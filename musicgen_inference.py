@@ -2,8 +2,8 @@ from audiocraft.models import MusicGen
 import torchaudio
 import os
 
-model = MusicGen.get_pretrained('small')
-model.set_generation_params(duration=10)
+model = MusicGen.get_pretrained("facebook/musicgen-small", device="cpu")
+model.set_generation_params(duration=5)
 
 root_dir = "testset"
 
@@ -15,7 +15,9 @@ for folder in sorted(os.listdir(root_dir)):
     with open(os.path.join(path, "prompt.txt")) as f:
         prompt = f.read().strip()
 
-    print(f"🎧 Generating for {folder}...")
-    wav = model.generate([prompt])[0]
+    print(f"Generating for {folder}...")
     output_path = os.path.join(path, "musicgen_output.wav")
-    torchaudio.save(output_path, wav.detach().cpu(), 32000)
+
+    wav = model.generate([prompt])
+    wav = wav[0].cpu()
+    torchaudio.save(output_path, wav, 32000)
