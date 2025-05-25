@@ -7,8 +7,8 @@ This fork was made to compare coco-mulla model with ordinary musicgen. To do so,
 
 Here you can see a step-by-step guide to reproduce my results.
 
-OS: MacOs
-Python: 3.11
+- OS: MacOs & Google Colab
+- Python: 3.11
 
 ### 1. Prepare a test set.
 
@@ -75,6 +75,7 @@ So I decided to use A100 GPU on Google Colab. The ipynb is called `coco_mulla_in
 
 ### Metrics
 
+```
 musicgen_pitch_corr             -0.069034
 musicgen_energy_corr             0.143787
 musicgen_energy_ratio            2.319782
@@ -90,6 +91,7 @@ chord-midi_energy_ratio          2.175005
 chord-drums-midi_pitch_corr      0.590524
 chord-drums-midi_energy_corr     0.333540
 chord-drums-midi_energy_ratio    1.836883
+```
 
 ### Analysis 
 
@@ -97,24 +99,24 @@ chord-drums-midi_energy_ratio    1.836883
 - The use of structural features (chords, midi, drums) makes CoCoMulla a much more consistent model with the original in all key musical aspects. 
 - MusicGen is a powerful, but unstructured bassline.
 
-## Links
+## Resources
 
-LMD dataset
-https://colinraffel.com/projects/lmd/
+- **Lakh MIDI Dataset (LMD)**  
+  A collection of thousands of MIDI files aligned with real audio.  
+  📎 [https://colinraffel.com/projects/lmd/](https://colinraffel.com/projects/lmd/)
 
-MSD dataset (lakh's metadata)
-http://millionsongdataset.com
+- **Million Song Dataset (MSD)**  
+  Metadata for the Lakh dataset with artist, title, and genre info.  
+  📎 [http://millionsongdataset.com](http://millionsongdataset.com)
 
-Extracted Chords
-https://huggingface.co/datasets/ohollo/lmd_chords/blob/4d6815cdd528bd1e99dcdefcb06d6f40429ec128/README.md
+- **Extracted Chords for LMD**  
+  Annotated chord sequences for the Lakh dataset, hosted on Hugging Face.  
+  📎 [LMD Chords @ HuggingFace](https://huggingface.co/datasets/ohollo/lmd_chords/blob/4d6815cdd528bd1e99dcdefcb06d6f40429ec128/README.md)
 
-Fixed Audiocraft
-https://github.com/GrandaddyShmax/audiocraft_plus
+- **Fixed Audiocraft (Mac-compatible fork)**  
+  A fork of the Meta Audiocraft repository with Mac and local compatibility fixes.  
+  📎 [https://github.com/GrandaddyShmax/audiocraft_plus](https://github.com/GrandaddyShmax/audiocraft_plus)
 
-Musicgen small
-https://huggingface.co/facebook/musicgen-small
-
-
-# TRY THIS 
-how to install audiocraft
-https://huggingface.co/undefinedxyz/musicgen
+- **MusicGen Small (official model weights)**  
+  Lightweight version of MusicGen for local inference and evaluation.  
+  📎 [https://huggingface.co/facebook/musicgen-small](https://huggingface.co/facebook/musicgen-small)
