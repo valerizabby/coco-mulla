@@ -68,44 +68,35 @@ model = MusicGen.get_pretrained("facebook/musicgen-small", device="cpu")
 Inference code stored in `musicgen_inference.py`.
 
 #### Coco-mulla 
-Now we should run coco-mulla on inference on the same tracks, but there is an issue with compatability of coco-mulla with MacOs. General idea: prepare patch to adapt is on Mac (same as with audiocraft-plus).
+Now we should run coco-mulla on inference on the same tracks, but there is an issue with compatability of coco-mulla with MacOs.
+So I decided to use A100 GPU on Google Colab. The ipynb is called `coco_mulla_inference.ipynb` and its prepared to run in Google Colab.
+
+## Results
+
+### Metrics
+
+musicgen_pitch_corr             -0.069034
+musicgen_energy_corr             0.143787
+musicgen_energy_ratio            2.319782
+chord-only_pitch_corr            0.484476
+chord-only_energy_corr           0.040173
+chord-only_energy_ratio          2.036327
+chord-drums_pitch_corr           0.266954
+chord-drums_energy_corr          0.415343
+chord-drums_energy_ratio         1.764437
+chord-midi_pitch_corr            0.455966
+chord-midi_energy_corr          -0.000249
+chord-midi_energy_ratio          2.175005
+chord-drums-midi_pitch_corr      0.590524
+chord-drums-midi_energy_corr     0.333540
+chord-drums-midi_energy_ratio    1.836883
+
+### Analysis 
 
 
-[//]: # (I want to use `/facebook/musicgen-small`, but it is not possible without preinstalled `xformers`, which is not suitable for MacOs.)
+- The use of structural features (chords, midi, drums) makes CoCoMulla a much more consistent model with the original in all key musical aspects. 
+- MusicGen is a powerful, but unstructured bassline.
 
-[//]: # (I decided to patch a fix into library to go through this problem.)
-
-[//]: # ()
-[//]: # (#### Patch)
-
-[//]: # (1. Open `venv/lib/python3.11/site-packages/audiocraft/modules/transformer.py`)
-
-[//]: # (2. Comment all `xformers` imports.)
-
-[//]: # (3. Change )
-
-[//]: # (```python)
-
-[//]: # (    from xformers.ops import LowerTriangularMask)
-
-[//]: # (```)
-
-[//]: # (on the raw implementation:)
-
-[//]: # (```python )
-
-[//]: # (    def dummy_LowerTriangularMask&#40;size&#41;:)
-
-[//]: # (        # fallback for CPU)
-
-[//]: # (        return torch.tril&#40;torch.ones&#40;size, size&#41;&#41;.to&#40;torch.bool&#41;)
-
-[//]: # (    )
-[//]: # (    LowerTriangularMask = dummy_LowerTriangularMask)
-
-[//]: # (```)
-
-[//]: # (   )
 ## Links
 
 LMD dataset
