@@ -1,8 +1,8 @@
 
 class TrainCfg:
-    batch_size = 12
+    batch_size = 1
     epoch = 5
-    sample_sec = 20
-    frame_res = 50
+    sample_sec = 5
+    frame_res = 25
 
     sample_rate = 32000
